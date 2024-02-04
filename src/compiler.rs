@@ -859,13 +859,13 @@ impl Compiler {
         compiler.borrow().scope_depth
     }
 
-    fn print_locals(compiler: Rc<RefCell<Compiler>>) {
-        for index in (0..compiler.borrow().local_count) {
-            let local = &compiler.borrow().locals[index];
-            print!("[{:?}] - ", local);
-        }
-        println!("");
-    }
+    // fn print_locals(compiler: Rc<RefCell<Compiler>>) {
+    //     for index in 0..compiler.borrow().local_count {
+    //         let local = &compiler.borrow().locals[index];
+    //         print!("[{:?}] - ", local);
+    //     }
+    //     println!("");
+    // }
 
     fn add_local(compiler: Rc<RefCell<Compiler>>, name: impl Into<String>) -> Result<(), String> {
         if compiler.borrow().local_count >= compiler.borrow().locals.len() {
@@ -946,7 +946,7 @@ impl Compiler {
         Some(upvalue_count as u8)
     }
 
-    fn to_owned_function(self) -> FunctionObject {
-        self.function
-    }
+    // fn to_owned_function(self) -> FunctionObject {
+    //     self.function
+    // }
 }

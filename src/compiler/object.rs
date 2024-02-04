@@ -1,17 +1,13 @@
 use crate::vm::{chunk::Chunk, value::Value};
-use std::{
-    cell::RefCell,
-    collections::{BTreeMap, HashMap},
-    rc::Rc,
-};
+use std::{cell::RefCell, collections::BTreeMap, rc::Rc};
 
-#[derive(Debug, Clone, PartialEq, PartialOrd)]
-pub enum ObjectType {
-    Function,
-    Closure,
-    UpValue,
-    Class,
-}
+// #[derive(Debug, Clone, PartialEq, PartialOrd)]
+// pub enum ObjectType {
+//     Function,
+//     Closure,
+//     UpValue,
+//     Class,
+// }
 
 #[derive(Debug, Clone, PartialEq, PartialOrd)]
 pub struct FunctionObject {

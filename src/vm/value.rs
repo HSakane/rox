@@ -5,7 +5,7 @@ use chrono::{DateTime, Local as LocalTime};
 use std::{
     cell::RefCell,
     fmt::Display,
-    ops::{Add, Div, Mul, Neg, Not, Range, Rem, Sub},
+    ops::{Add, Div, Mul, Neg, Not, Rem, Sub},
     rc::Rc,
 };
 
@@ -464,10 +464,6 @@ impl StackArray {
 
     pub fn get_slice(&self, offset: usize) -> &[Value] {
         &self.values[offset..self.index]
-    }
-
-    pub fn get_slice_range(&self, range: Range<usize>) -> &[Value] {
-        &self.values[range]
     }
 
     pub fn print(&self) {

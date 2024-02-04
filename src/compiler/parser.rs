@@ -21,7 +21,6 @@ const PRECEDENCE_FACTOR: i32 = 40;
 const PRECEDENCE_POW: i32 = 50;
 const PRECEDENCE_UNARY: i32 = 60;
 const PRECEDENCE_CALL: i32 = 70;
-const PRECEDENCE_PRIMARY: i32 = 80;
 
 pub struct Parser {
     tokens: Vec<Token>,
@@ -803,7 +802,7 @@ impl Parser {
 
     fn parse_array(&mut self) -> ParseResult<ExpressionNode> {
         self.next_token();
-        let precedence = self.current_precedence();
+        // let precedence = self.current_precedence();
         let mut values: Vec<ExpressionNode> = Vec::new();
         while let Some(token) = self.current_token() {
             match token {
@@ -843,7 +842,7 @@ impl Parser {
 
     fn parse_indexcall(&mut self, left: ExpressionNode) -> ParseResult<ExpressionNode> {
         self.next_token();
-        let precedence = self.current_precedence();
+        // let precedence = self.current_precedence();
         let index = self.parse_expression(PRECEDENCE_LOWEST)?;
         if let Some(token) = self.peek_token() {
             match token {
@@ -868,7 +867,7 @@ impl Parser {
 
     fn parse_funcall(&mut self, left: ExpressionNode) -> ParseResult<ExpressionNode> {
         self.next_token();
-        let precedence = self.current_precedence();
+        // let precedence = self.current_precedence();
         let mut parameter: Vec<ExpressionNode> = Vec::new();
         while let Some(token) = self.current_token() {
             match token {

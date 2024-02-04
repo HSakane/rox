@@ -1,12 +1,12 @@
 use self::{
     chunk::{
-        OP_ADD, OP_ARRAY, OP_CALL, OP_CLASS, OP_CLOSE_UPVALUE, OP_CLOSURE, OP_CONSTANT, OP_COUNTUP,
-        OP_DEFINE_GLOBAL, OP_DIVIDE, OP_EQUAL, OP_FALSE, OP_GET_GLOBAL, OP_GET_LOCAL, OP_GET_PROP,
-        OP_GET_SUPER, OP_GET_UPVALUE, OP_GREATER, OP_INDEX_CALL, OP_INDEX_SET, OP_INHERIT,
-        OP_CONSTANT0, OP_INVOKE, OP_JUMP, OP_JUMP_IF_FALSE, OP_JUMP_IF_RANGE_END, OP_LESS,
-        OP_LOOP, OP_METHOD, OP_MULTIPLY, OP_NEGATIVE, OP_NOT, OP_NULL, OP_POP, OP_POW, OP_PRINT,
-        OP_RANGE, OP_REM, OP_RETURN, OP_SET_GLOBAL, OP_SET_LOCAL, OP_SET_PROP, OP_SET_UPVALUE,
-        OP_SUBTRACT, OP_SUPER_INVOKE, OP_TRUE,
+        OP_ADD, OP_ARRAY, OP_CALL, OP_CLASS, OP_CLOSE_UPVALUE, OP_CLOSURE, OP_CONSTANT,
+        OP_CONSTANT0, OP_COUNTUP, OP_DEFINE_GLOBAL, OP_DIVIDE, OP_EQUAL, OP_FALSE, OP_GET_GLOBAL,
+        OP_GET_LOCAL, OP_GET_PROP, OP_GET_SUPER, OP_GET_UPVALUE, OP_GREATER, OP_INDEX_CALL,
+        OP_INDEX_SET, OP_INHERIT, OP_INVOKE, OP_JUMP, OP_JUMP_IF_FALSE, OP_JUMP_IF_RANGE_END,
+        OP_LESS, OP_LOOP, OP_METHOD, OP_MULTIPLY, OP_NEGATIVE, OP_NOT, OP_NULL, OP_POP, OP_POW,
+        OP_PRINT, OP_RANGE, OP_REM, OP_RETURN, OP_SET_GLOBAL, OP_SET_LOCAL, OP_SET_PROP,
+        OP_SET_UPVALUE, OP_SUBTRACT, OP_SUPER_INVOKE, OP_TRUE,
     },
     frame::CallFrame,
     table::Table,
@@ -902,29 +902,29 @@ impl VM {
         Some(())
     }
 
-    fn print_upvalue(no: usize, upvalue: &UpvalueObject) {
-        println!("[No {}]", no);
-        println!("  location: {:?}", upvalue.location);
-        println!("  closed: {:?}", upvalue.closed);
-        print!("  next: ");
-        match &upvalue.next {
-            Some(next) => Self::print_upvalue(no, &next.borrow()),
-            None => println!(""),
-        }
-    }
+    // fn print_upvalue(no: usize, upvalue: &UpvalueObject) {
+    //     println!("[No {}]", no);
+    //     println!("  location: {:?}", upvalue.location);
+    //     println!("  closed: {:?}", upvalue.closed);
+    //     print!("  next: ");
+    //     match &upvalue.next {
+    //         Some(next) => Self::print_upvalue(no, &next.borrow()),
+    //         None => println!(""),
+    //     }
+    // }
 
-    fn print_upvalues(&self) {
-        for (i, upvalue) in self.frame_last().closure.upvalues.iter().enumerate() {
-            Self::print_upvalue(i, &upvalue.borrow());
-        }
-    }
+    // fn print_upvalues(&self) {
+    //     for (i, upvalue) in self.frame_last().closure.upvalues.iter().enumerate() {
+    //         Self::print_upvalue(i, &upvalue.borrow());
+    //     }
+    // }
 
-    fn print_open_upvalue(&self) {
-        match &self.open_upvalue {
-            Some(upvalue) => Self::print_upvalue(100, &upvalue.borrow()),
-            None => println!("None"),
-        }
-    }
+    // fn print_open_upvalue(&self) {
+    //     match &self.open_upvalue {
+    //         Some(upvalue) => Self::print_upvalue(100, &upvalue.borrow()),
+    //         None => println!("None"),
+    //     }
+    // }
 
     fn close_upvalues(&mut self) {
         let mut current_upvalue: Option<Rc<RefCell<UpvalueObject>>> = self.open_upvalue.clone();
@@ -1209,7 +1209,6 @@ fn len(n: &[Value]) -> Value {
     return Value::Null;
 }
 
-fn now(n: &[Value]) -> Value {
+fn now(_: &[Value]) -> Value {
     Value::DateTime(LocalTime::now())
 }
-
